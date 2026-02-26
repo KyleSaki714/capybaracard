@@ -75,7 +75,7 @@
         info.id = "info"
         info.innerHTML = `
             <a href="#">Create your own</a>
-            <p>Kyle S. 2026</p>
+            <p><a href="https://koolblue.neocities.org/">Kyle S.</a> 2026</p>
         `
 
         document.body.appendChild(info)
@@ -90,6 +90,30 @@
         currentOrange++;
         console.log(currentOrange)
 
+        const clone = elem.cloneNode(false)
+        clone.style = ""
+        console.log(clone)
+        document.body.appendChild(clone)
+        
+        clone.style.zIndex = -1
+
+        const rect = elem.getBoundingClientRect();
+        console.log(rect)
+        elem.style.opacity = 0
+        
+        // choose left or right
+        const randomSign = Math.random() < 0.5 ? -1 : 1;
+
+        // send clone to animate function
+        animateOrange(0, clone, {
+            x: rect.left,
+            y: rect.top + window.scrollY - rect.height,
+            xvel: 50 * randomSign, // initial "jump"
+            yvel: -50,
+            initialSign: randomSign, // used for spin direction
+            rotation: 0
+        })
+
         currentPreventScrollPoint = getCurrentPreventScrollPoint();
         
         window.scrollTo({   
@@ -101,6 +125,45 @@
         if (currentOrange === AMOUNT_ORANGES) {
             console.log("HAPPY")
         }
+    }
+
+    function animateOrange(timestamp, elem, movement) {
+        console.log('mvoement:')
+        console.log(movement)
+        console.log("elem:")
+        console.log(elem)
+
+        const outsideScreen = movement.x + elem.width < 0 || movement.x > window.innerWidth ||
+            movement.y > window.scrollY + window.innerHeight;
+        if (outsideScreen) {
+            elem.remove()
+            return;
+        }
+
+        elem.style.position = "absolute"
+        elem.style.top = 0
+        elem.style.left = 0
+        elem.style.transform = `translate(${movement.x}px, ${movement.y}px)`
+
+        // // 
+        // movement.xvel += 20
+        // movement.yvel += -20
+
+        const gravity = 9;
+        movement.yvel += gravity;
+
+        const dragcoeff = 0.75
+        movement.xvel = movement.xvel * dragcoeff;
+        movement.yvel = movement.yvel * dragcoeff;
+
+        movement.x += movement.xvel
+        movement.y += movement.yvel
+
+        elem.style.transition = "transform 0.01s"
+
+        requestAnimationFrame((timestamp) => {
+            animateOrange(timestamp, elem, movement)
+        })
     }
 
     // gets the posiiton of 1 orange ahead to prevent scrolling past that point
