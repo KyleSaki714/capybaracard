@@ -34,6 +34,7 @@
 
             const img = document.createElement("img")
             img.src = "./tralalero_tralala.jpg"
+            img.draggable = false
             img.classList.add('orange')
 
             // console.log(Math.sin((i / AMOUNT_ORANGES) * (Math.PI * 2) * 2))
