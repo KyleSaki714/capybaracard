@@ -79,9 +79,9 @@
         }
         if (searchParams.has("msg64")) {
             const msgqparam = searchParams.get('msg64')
-            console.log(msgqparam)
             try {
                 const str = base64ToUtf8(msgqparam);
+                console.log("base64 msg: " + str)
                 updateMessage(str);
             } catch (e) {
                 console.error("couldnt convert base64string, showing error" + e);
@@ -89,15 +89,6 @@
                 updateMessage("hi!")
             }
         }
-
-        const testmsg = "capybara cafe カピバラカフェ"
-        const b = utf8ToBase64(testmsg);
-        console.log(b)
-        const str = base64ToUtf8(b)
-        console.log(str)
-
-        console.log(isaBase64String(b))
-        console.log(isaBase64String(str))
 
         oranges_div.id = "orange_stack"
 
@@ -148,13 +139,43 @@
 
         const info = document.createElement("div");
         info.id = "info"
-        info.innerHTML = `
-            <a href="#">Create your own</a>
-            <p>Kyle S. 2026</p>
-        `
+
+        const anchor = document.createElement("a");
+        // anchor.href = "/";
+        anchor.textContent = "Create your own";
+        anchor.style.cursor = "pointer";
+        anchor.style.textDecoration = "underline"
+
+        const name = document.createElement("p");
+        name.textContent = "Kyle S. 2026";
+
+        info.appendChild(anchor);
+        info.appendChild(name);
+
+        info.addEventListener("click", createCustomUserMessage)
 
         document.body.appendChild(info)
 
+    }
+
+    function createCustomUserMessage() {
+        try {
+            let user_msg = prompt(`What is your message?\nMost multilingual characters should be supported. (e.g: 'Hello, 世界!') \nWarning: some emojis are unsupported, like skin color emojis 👦🏻`)
+            if (user_msg == null || user_msg == "") {
+                user_msg = "hi!";
+            }
+    
+            const user_msg_base64 = utf8ToBase64(user_msg);
+
+            const final_url = `${window.location.origin}/?msg64=${encodeURIComponent(user_msg_base64)}`
+            
+            if (confirm(`Success! Select OK if you want the url:\n${final_url}\ncopied to your clipboard. Send it to someone!!! Redirecting to the new link...\n----\nExtra technical info:\nIn the link, the message is encoded in base64 so the recipient doesn't see the message. For instance, like this set of characters: d2hhdCdzIGdvb2Q=. If you want to manually test a sentance, you can replace \"msg64\" with just \"msg\" in the address bar. for example: /?msg=Hello World`)) {
+                navigator.clipboard.writeText(final_url)
+            }
+            window.location.href = final_url
+        } catch (e) {
+            alert("Sorry, there was an error in using your message.\n-------\n" + e)
+        }
     }
 
     function onOrangeClicked(e) {
