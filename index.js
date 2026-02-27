@@ -15,8 +15,8 @@
 
     let ABSOLUTE_PAGE_HEIGHT;
     
-    const MESSAGE = "HAPPY BIRTHDAY!!!"
-    const AMOUNT_ORANGES = MESSAGE.length;
+    let MESSAGE = [..."Happy Birthday Risa!!!🍰🎉🥳"]
+    let AMOUNT_ORANGES = MESSAGE.length;
 
     // starts at AMOUNT_ORANGES, is subtracted on every orange click
     let currentOrange = 0;
@@ -26,7 +26,78 @@
 
     const oranges_div = document.createElement("div");
 
+    function updateMessage(str_msg) {
+        MESSAGE = [...str_msg];
+        AMOUNT_ORANGES = str_msg.length;
+    }
+
+    // thanks bro
+    // https://www.digitalocean.com/community/tutorials/how-to-encode-and-decode-strings-with-base64-in-javascript
+
+    // Function to encode a UTF-8 string to Base64
+    function utf8ToBase64(str) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(str);
+
+        const binaryString = String.fromCharCode.apply(null, data);
+        return btoa(binaryString);
+    }
+
+    // Function to decode a Base64 string to UTF-8
+    function base64ToUtf8(b64) {
+        const binaryString = atob(b64);
+        // Create a Uint8Array from the binary string.
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+        const decoder = new TextDecoder();
+        return decoder.decode(bytes);
+    }
+
+    function isaBase64String(str) {
+        if (!str || str.length % 4 !== 0 || !/^[A-Za-z0-9+/]+={0,2}$/.test(str)) {
+            return false; // Quick initial check for basic validity
+        }
+        try {
+            // Attempt to decode the string
+            atob(str);
+            return true;
+        } catch (e) {
+            // If an error is caught, it's not a valid base64 string
+            return false;
+        }
+    }
+
     function init() {
+
+        const searchParams = new URLSearchParams(window.location.search);
+        
+        if (searchParams.has("msg")) {
+            const msgqparam = searchParams.get('msg')
+            updateMessage(msgqparam)
+        }
+        if (searchParams.has("msg64")) {
+            const msgqparam = searchParams.get('msg64')
+            console.log(msgqparam)
+            try {
+                const str = base64ToUtf8(msgqparam);
+                updateMessage(str);
+            } catch (e) {
+                console.error("couldnt convert base64string, showing error" + e);
+                alert("error! couldn't convert base64 string. setting message to \"hi!\"")
+                updateMessage("hi!")
+            }
+        }
+
+        const testmsg = "capybara cafe カピバラカフェ"
+        const b = utf8ToBase64(testmsg);
+        console.log(b)
+        const str = base64ToUtf8(b)
+        console.log(str)
+
+        console.log(isaBase64String(b))
+        console.log(isaBase64String(str))
 
         oranges_div.id = "orange_stack"
 
@@ -101,7 +172,7 @@
             node.remove();
         })
         const text = document.createElement("p")
-        text.textContent = MESSAGE.charAt(currentOrange-1);
+        text.textContent = MESSAGE[currentOrange-1];
         text.style.zIndex = -50
         elem.appendChild(text)
         
