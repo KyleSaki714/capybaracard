@@ -14,8 +14,9 @@
     window.addEventListener("scroll", onScroll);
 
     let ABSOLUTE_PAGE_HEIGHT;
-
-    const AMOUNT_ORANGES = 15;
+    
+    const MESSAGE = "HAPPY BIRTHDAY!!!"
+    const AMOUNT_ORANGES = MESSAGE.length;
 
     // starts at AMOUNT_ORANGES, is subtracted on every orange click
     let currentOrange = 0;
@@ -100,9 +101,8 @@
             node.remove();
         })
         const text = document.createElement("p")
-        text.textContent = "sup";
+        text.textContent = MESSAGE.charAt(currentOrange-1);
         text.style.zIndex = -50
-        text.style.fontSize = "4rem"
         elem.appendChild(text)
         
         // choose left or right
