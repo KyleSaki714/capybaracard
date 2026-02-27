@@ -31,10 +31,15 @@
 
         for (let i = 0; i < AMOUNT_ORANGES; i++) {
 
+            const orange_div = document.createElement("div")
+            orange_div.classList.add('orange')
+
             const img = document.createElement("img")
             img.src = "./tralalero_tralala.jpg"
             img.draggable = false
-            img.classList.add('orange')
+            img.style.width = "100%"
+            
+            orange_div.appendChild(img);
 
             // console.log(Math.sin((i / AMOUNT_ORANGES) * (Math.PI * 2) * 2))
             // console.log(Math.sin((i / AMOUNT_ORANGES) * (Math.PI * 2)))
@@ -42,12 +47,12 @@
             const x = Math.sin(2 * rad)
 
             // img.style.transform = `translateX(${(i / AMOUNT_ORANGES) * 100}px)`
-            img.style.transform = `translateX(${x * 100}px)`
+            orange_div.style.transform = `translateX(${x * 100}px)`
 
             
-            img.addEventListener("click", onOrangeClicked, { once: true})
+            orange_div.addEventListener("click", onOrangeClicked, { once: true})
             
-            oranges_div.appendChild(img)
+            oranges_div.appendChild(orange_div)
         }
         
         document.body.appendChild(oranges_div)
@@ -83,23 +88,28 @@
     function onOrangeClicked(e) {
         const elem = e.currentTarget;
         
-        elem.style.filter = "blur(5px) brightness(150%) contrast(120%)"
-
         currentOrange++;
 
-        const clone = elem.cloneNode(false)
+        const clone = elem.cloneNode(true)
         clone.style = ""
+        clone.style.zIndex = -1
         document.body.appendChild(clone)
         
-        clone.style.zIndex = -1
-
-        const rect = elem.getBoundingClientRect();
-        elem.style.opacity = 0
+        // replace original elem's image with p tag         
+        elem.childNodes.forEach(node => {
+            node.remove();
+        })
+        const text = document.createElement("p")
+        text.textContent = "sup";
+        text.style.zIndex = -50
+        text.style.fontSize = "4rem"
+        elem.appendChild(text)
         
         // choose left or right
         const randomSign = Math.random() < 0.5 ? -1 : 1;
-
+        
         // send clone to animate function
+        const rect = elem.getBoundingClientRect();
         animateOrange(0, clone, {
             x: rect.left,
             y: rect.top + window.scrollY - rect.height,
