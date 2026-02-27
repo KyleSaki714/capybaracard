@@ -26,7 +26,6 @@
     const oranges_div = document.createElement("div");
 
     function init() {
-        console.log("sup")
 
         oranges_div.id = "orange_stack"
 
@@ -41,7 +40,6 @@
             // console.log(Math.sin((i / AMOUNT_ORANGES) * (Math.PI * 2)))
             const rad = ((i + 1) / AMOUNT_ORANGES) * (Math.PI * 2)
             const x = Math.sin(2 * rad)
-            console.log(x)
 
             // img.style.transform = `translateX(${(i / AMOUNT_ORANGES) * 100}px)`
             img.style.transform = `translateX(${x * 100}px)`
@@ -75,7 +73,7 @@
         info.id = "info"
         info.innerHTML = `
             <a href="#">Create your own</a>
-            <p><a href="https://koolblue.neocities.org/">Kyle S.</a> 2026</p>
+            <p>Kyle S. 2026</p>
         `
 
         document.body.appendChild(info)
@@ -88,17 +86,14 @@
         elem.style.filter = "blur(5px) brightness(150%) contrast(120%)"
 
         currentOrange++;
-        console.log(currentOrange)
 
         const clone = elem.cloneNode(false)
         clone.style = ""
-        console.log(clone)
         document.body.appendChild(clone)
         
         clone.style.zIndex = -1
 
         const rect = elem.getBoundingClientRect();
-        console.log(rect)
         elem.style.opacity = 0
         
         // choose left or right
@@ -116,11 +111,13 @@
 
         currentPreventScrollPoint = getCurrentPreventScrollPoint();
         
-        window.scrollTo({   
-            top: currentPreventScrollPoint - window.innerHeight,  // Vertical position
-            left: 0,   // Horizontal position
-            behavior: 'smooth' // Animates the scroll smoothly
-        });
+        setTimeout(() => {
+            window.scrollTo({   
+                top: currentPreventScrollPoint - window.innerHeight,  // Vertical position
+                left: 0,   // Horizontal position
+                behavior: 'smooth' // Animates the scroll smoothly
+            });
+        }, 750)
 
         if (currentOrange === AMOUNT_ORANGES) {
             console.log("HAPPY")
@@ -128,10 +125,6 @@
     }
 
     function animateOrange(timestamp, elem, movement) {
-        console.log('mvoement:')
-        console.log(movement)
-        console.log("elem:")
-        console.log(elem)
 
         const outsideScreen = movement.x + elem.width < 0 || movement.x > window.innerWidth ||
             movement.y > window.scrollY + window.innerHeight;
@@ -143,11 +136,7 @@
         elem.style.position = "absolute"
         elem.style.top = 0
         elem.style.left = 0
-        elem.style.transform = `translate(${movement.x}px, ${movement.y}px)`
-
-        // // 
-        // movement.xvel += 20
-        // movement.yvel += -20
+        elem.style.transform = `translate(${movement.x}px, ${movement.y}px) `
 
         const gravity = 9;
         movement.yvel += gravity;
@@ -184,16 +173,12 @@
         
         
         const orange = oranges_div.childNodes.item(currentOrange)
-        // console.log(orange)
         
         // previously I didn't set the height with css, but set the width. why was clientHeight 0, still?
         
         const orangeClientRect = orange.getBoundingClientRect()
-        // console.log("orangeClientRect")
-        // console.log(orangeClientRect)
         
         const res = window.scrollY + orangeClientRect.y + orangeClientRect.height
-        // console.log(res)
         
         // console.log(`updated scroll point to ${res + BOTTOMPADDING}`)
         return res + BOTTOMPADDING;
@@ -204,7 +189,7 @@
         const WINDOW_OFFSET = window.innerHeight;
         
         if (window.scrollY + WINDOW_OFFSET > currentPreventScrollPoint) {
-            console.log("past")
+            console.log("resetting scroll")
             window.scrollTo({   
                 top: currentPreventScrollPoint - WINDOW_OFFSET,  // Vertical position
                 left: 0,   // Horizontal position
