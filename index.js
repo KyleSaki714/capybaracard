@@ -24,7 +24,7 @@
 
     const BOTTOMPADDING = 50;
 
-    const oranges_div = document.createElement("div");
+    let oranges_div = null;
 
     function updateMessage(str_msg) {
         MESSAGE = [...str_msg];
@@ -90,7 +90,7 @@
             }
         }
 
-        oranges_div.id = "orange_stack"
+        oranges_div = document.getElementById("orange_stack")
 
         for (let i = 0; i < AMOUNT_ORANGES; i++) {
 
@@ -118,7 +118,6 @@
             oranges_div.appendChild(orange_div)
         }
         
-        document.body.appendChild(oranges_div)
         currentPreventScrollPoint = getCurrentPreventScrollPoint();
         
         window.scrollTo({   
@@ -127,35 +126,8 @@
             behavior: 'smooth' // Animates the scroll smoothly
         });
         
-        // CAPYBARA
-        const capy_div = document.createElement("div")
-        capy_div.id = "capy"
-
-        const img = document.createElement("img")
-        img.src = "./bad piggie drip.jpg"
-
-        capy_div.appendChild(img)
-        document.body.appendChild(capy_div);
-
-        const info = document.createElement("div");
-        info.id = "info"
-
-        const anchor = document.createElement("a");
-        // anchor.href = "/";
-        anchor.textContent = "Create your own";
-        anchor.style.cursor = "pointer";
-        anchor.style.textDecoration = "underline"
-
-        const name = document.createElement("p");
-        name.textContent = "Kyle S. 2026";
-
-        info.appendChild(anchor);
-        info.appendChild(name);
-
+        const info = document.getElementById("info")
         info.addEventListener("click", createCustomUserMessage)
-
-        document.body.appendChild(info)
-
     }
 
     function createCustomUserMessage() {
