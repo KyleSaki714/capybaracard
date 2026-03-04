@@ -340,7 +340,10 @@
 
     function checkpageScrollToBackground(currPgScroll) {
 
-        const whichBgIdx = Math.trunc(currPgScroll * backgrounds_paths.length);
+        let whichBgIdx = Math.trunc(currPgScroll * backgrounds_paths.length);
+        if (whichBgIdx >= backgrounds_paths.length) {
+            whichBgIdx = backgrounds_paths.length - 1;
+        }
         const chosenBg = backgrounds_paths[whichBgIdx];
 
         if (curr_bg === chosenBg) {
