@@ -15,7 +15,7 @@
 
     let ABSOLUTE_PAGE_HEIGHT;
     
-    const IMG_ORANGE = "./assets/orange.png"
+    const IMG_ORANGE = "./assets/orange.webp"
 
     let MESSAGE = [..."Happy Birthday Risa!!!🍰🎉🥳"]
     let AMOUNT_ORANGES = MESSAGE.length;
@@ -30,10 +30,10 @@
 
     let bg2Active = false;
     const backgrounds_paths = [
-        "./assets/bg01-Sky.png",
-        "./assets/bg02-Onsens.png",
-        "./assets/bg03-Venezuela.png",
-        "./assets/bg04-Final.png"
+        "./assets/bg01-Sky.webp",
+        "./assets/bg02-Onsens.webp",
+        "./assets/bg03-Venezuela.webp",
+        "./assets/bg04-Final.webp"
     ]
     
     let curr_bg = null;
