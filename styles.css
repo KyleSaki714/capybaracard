@@ -18,11 +18,34 @@
     -moz-user-select: none;      /* Firefox */
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Standard property */
+
+    scrollbar-width: thin;
 }
 
 body {
     background-color: skyblue;
+    position: relative;
 }
+
+html, body {
+    height: 100%;
+}
+
+/* image background trick taken from Reverse 1999 website! https://re1999.bluepoch.com/ */
+
+.page-bg {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  width: 100%;
+  z-index: -1;
+}
+
+/* .page-bg img {
+    width: 100%;
+    display: block;
+} */
 
 #orange_stack, #capy {
     display: flex;
@@ -76,4 +99,8 @@ body {
 
 #info > p, #info > a {
     color: white;
+}
+
+#onsen_final {
+    width: 100%;
 }
