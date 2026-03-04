@@ -15,6 +15,8 @@
 
     let ABSOLUTE_PAGE_HEIGHT;
     
+    const IMG_ORANGE = "./assets/orange.png"
+
     let MESSAGE = [..."Happy Birthday Risa!!!🍰🎉🥳"]
     let AMOUNT_ORANGES = MESSAGE.length;
 
@@ -28,10 +30,10 @@
 
     let bg2Active = false;
     const backgrounds_paths = [
-        "./assets/mountains_1.jpg",
-        "./assets/mountains_2.jpg",
-        "./assets/chocolate.png",
-        "./assets/bg.avif"
+        "./assets/bg01-Sky.png",
+        "./assets/bg02-Onsens.png",
+        "./assets/bg03-Venezuela.png",
+        "./assets/bg04-Final.png"
     ]
     
     let curr_bg = null;
@@ -115,7 +117,7 @@
             orange_div.classList.add('orange')
 
             const img = document.createElement("img")
-            img.src = "./tralalero_tralala.jpg"
+            img.src = IMG_ORANGE
             img.draggable = false
             img.style.width = "100%"
             
@@ -345,6 +347,8 @@
             whichBgIdx = backgrounds_paths.length - 1;
         }
         const chosenBg = backgrounds_paths[whichBgIdx];
+
+        console.log(`${currPgScroll} ${whichBgIdx}`)
 
         if (curr_bg === chosenBg) {
             return
