@@ -336,8 +336,8 @@
 
         // CHECK IF U GOTTA CHANGE BACKGROUND
         
-        const currAbsPageScrollPosNormalized = (window.scrollY + (window.innerHeight / 2)) / ABSOLUTE_PAGE_HEIGHT
-        checkpageScrollToBackground(currAbsPageScrollPosNormalized)
+        // const currAbsPageScrollPosNormalized = (window.scrollY + (window.innerHeight / 2)) / ABSOLUTE_PAGE_HEIGHT
+        // checkpageScrollToBackground(currAbsPageScrollPosNormalized)
     }
 
     function checkpageScrollToBackground(currPgScroll) {

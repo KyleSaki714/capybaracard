@@ -25,6 +25,8 @@
 body {
     background-color: rgb(0, 0, 0);
     position: relative;
+    background-image: url("assets/capycard-background (20260304121944).webp");
+    background-size: 200px 200px;
 }
 
 html, body {
@@ -80,10 +82,10 @@ html, body {
 }
 
 .orange > p {
-    color: white;
+    color: #b8dffc;
     font-family: kylesans2025;
     font-size: 15rem;
-    filter: drop-shadow(5px 7px 4px #000103);
+    filter: drop-shadow(5px 7px 2px #000103);
     
     animation-name: pulse;
     animation-duration: 3s;
@@ -93,6 +95,7 @@ html, body {
 }
 
 #capy > img {
+    filter: drop-shadow(0px 0px 24px #fd9003);
     max-width: 250px;
 
     @media(min-width: 600px) {
@@ -102,13 +105,13 @@ html, body {
 
 #info {
     position: absolute;
-    background-color: #3e5879;
+    background-color: #a8d3f3;
     width: 100%;
     padding: 12px;
 }
 
 #info > p, #info > a {
-    color: white;
+    color: #535353;
 }
 
 #onsen_final {
