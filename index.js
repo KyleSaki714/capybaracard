@@ -27,9 +27,12 @@
     let oranges_div = null;
 
     let bg2Active = false;
-    const bg_sky = "./assets/mountains_1.jpg"
-    const bg_onsens = "./assets/mountains_2.jpg"
-    const bg_final = "./assets/bg.avif"
+    const backgrounds_paths = [
+        "./assets/mountains_1.jpg",
+        "./assets/mountains_2.jpg",
+        "./assets/chocolate.png",
+        "./assets/bg.avif"
+    ]
     
     let curr_bg = null;
     let bg_1 = null;
@@ -102,7 +105,7 @@
         bg_1 = document.getElementById("bg-1")
         bg_2 = document.getElementById("bg-2")
 
-        swapBgs(bg_sky)
+        swapBgs(backgrounds_paths[0])
 
         oranges_div = document.getElementById("orange_stack")
 
@@ -330,35 +333,22 @@
         }
 
         // CHECK IF U GOTTA CHANGE BACKGROUND
-
+        
         const currAbsPageScrollPosNormalized = (window.scrollY + (window.innerHeight / 2)) / ABSOLUTE_PAGE_HEIGHT
-        // console.log(`currpagescroll: ${currAbsPageScrollPosNormalized}`)
-        if (currAbsPageScrollPosNormalized < 0.4) {
-            if (curr_bg === bg_sky) {
-                return
-            }
+        checkpageScrollToBackground(currAbsPageScrollPosNormalized)
+    }
 
-            console.log("start - sky")
-            curr_bg = bg_sky
-            swapBgs(bg_sky)
-        } else if (currAbsPageScrollPosNormalized >= 0.4 && currAbsPageScrollPosNormalized < 0.7) {
-            if (curr_bg === bg_onsens) {
-                return
-            }
+    function checkpageScrollToBackground(currPgScroll) {
 
-            console.log("middle")
-            curr_bg = bg_onsens
-            swapBgs(bg_onsens)
-        } else if (currAbsPageScrollPosNormalized >= 0.7) {
-            if (curr_bg === bg_final) {
-                return
-            }
-            
-            console.log("end")
-            curr_bg = bg_final
-            swapBgs(bg_final)
+        const whichBgIdx = Math.trunc(currPgScroll * backgrounds_paths.length);
+        const chosenBg = backgrounds_paths[whichBgIdx];
+
+        if (curr_bg === chosenBg) {
+            return
         }
 
+        curr_bg = backgrounds_paths[whichBgIdx];
+        swapBgs(chosenBg)
 
     }
 
