@@ -34,18 +34,19 @@ html, body {
 /* image background trick taken from Reverse 1999 website! https://re1999.bluepoch.com/ */
 
 .page-bg {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  width: 100%;
-  z-index: -1;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 100%;
+    z-index: -1;
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
 }
 
-/* .page-bg img {
-    width: 100%;
-    display: block;
-} */
+.invisible {
+    opacity: 0;
+}
 
 #orange_stack, #capy {
     display: flex;

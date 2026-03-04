@@ -26,6 +26,15 @@
 
     let oranges_div = null;
 
+    let bg2Active = false;
+    const bg_sky = "./assets/mountains_1.jpg"
+    const bg_onsens = "./assets/mountains_2.jpg"
+    const bg_final = "./assets/bg.avif"
+    
+    let curr_bg = null;
+    let bg_1 = null;
+    let bg_2 = null;
+
     function updateMessage(str_msg) {
         MESSAGE = [...str_msg];
         AMOUNT_ORANGES = str_msg.length;
@@ -90,6 +99,11 @@
             }
         }
 
+        bg_1 = document.getElementById("bg-1")
+        bg_2 = document.getElementById("bg-2")
+
+        swapBgs(bg_sky)
+
         oranges_div = document.getElementById("orange_stack")
 
         for (let i = 0; i < AMOUNT_ORANGES; i++) {
@@ -128,6 +142,15 @@
         
         const info = document.getElementById("info")
         info.addEventListener("click", createCustomUserMessage)
+
+        ABSOLUTE_PAGE_HEIGHT = Math.max(
+                document.body.scrollHeight, 
+                document.documentElement.scrollHeight, 
+                document.body.offsetHeight, 
+                document.documentElement.offsetHeight, 
+                document.body.clientHeight, 
+                document.documentElement.clientHeight
+            );
     }
 
     function createCustomUserMessage() {
@@ -258,7 +281,42 @@
         return res + BOTTOMPADDING;
     }
 
+    function swapBgs(bg_swapto) {
+        if (!bg_1 || !bg_2) {
+            console.error("NO BGs!!!")
+            return;
+        }
+
+        const invis = "invisible"
+        if (bg2Active) {
+            // set bg2 src to bg_swapto
+            bg_2.src = bg_swapto;
+
+            // set bg1 to invisible
+            bg_1.classList.add(invis)
+            
+            // remove invisible from bg2
+            bg_2.classList.remove(invis)
+
+            bg2Active = false
+            
+        } else {
+            // set b1 src to bg_swapto
+            bg_1.src = bg_swapto
+            
+            // setbg2 to invisible
+            bg_2.classList.add(invis)
+            
+            // remove invisible from bg1
+            bg_1.classList.remove(invis)
+
+            bg2Active = true
+        }
+    }
+
     function onScroll() {
+
+        // RESTRICT SCROLL
 
         const WINDOW_OFFSET = window.innerHeight;
         
@@ -270,6 +328,38 @@
                 behavior: 'smooth' // Animates the scroll smoothly
             });
         }
+
+        // CHECK IF U GOTTA CHANGE BACKGROUND
+
+        const currAbsPageScrollPosNormalized = (window.scrollY + (window.innerHeight / 2)) / ABSOLUTE_PAGE_HEIGHT
+        // console.log(`currpagescroll: ${currAbsPageScrollPosNormalized}`)
+        if (currAbsPageScrollPosNormalized < 0.4) {
+            if (curr_bg === bg_sky) {
+                return
+            }
+
+            console.log("start - sky")
+            curr_bg = bg_sky
+            swapBgs(bg_sky)
+        } else if (currAbsPageScrollPosNormalized >= 0.4 && currAbsPageScrollPosNormalized < 0.7) {
+            if (curr_bg === bg_onsens) {
+                return
+            }
+
+            console.log("middle")
+            curr_bg = bg_onsens
+            swapBgs(bg_onsens)
+        } else if (currAbsPageScrollPosNormalized >= 0.7) {
+            if (curr_bg === bg_final) {
+                return
+            }
+            
+            console.log("end")
+            curr_bg = bg_final
+            swapBgs(bg_final)
+        }
+
+
     }
 
 })();
