@@ -16,8 +16,11 @@
     let ABSOLUTE_PAGE_HEIGHT;
     
     const IMG_ORANGE = "./assets/orange.webp"
+    const IMG_CHOCOLATE = "./assets/chocolate.webp"
+    const IMG_CAKE = "./assets/cake.webp"
+    const IMG_WATERMELON = "./assets/watermelon.webp"
 
-    let MESSAGE = [..."Happy Birthday Risa!!!🍰🎉🥳"]
+    let MESSAGE = [..."Happy Birthday Risa!!"]
     let AMOUNT_ORANGES = MESSAGE.length;
 
     // starts at AMOUNT_ORANGES, is subtracted on every orange click
@@ -106,9 +109,24 @@
             orange_div.classList.add('orange')
 
             const img = document.createElement("img")
-            img.src = IMG_ORANGE
             img.draggable = false
             img.style.width = "100%"
+
+            // randomly set oranges or other foods!!
+            const randFloat = Math.random();
+            if (randFloat > 0.90) {
+                img.src = IMG_CAKE
+            } else if (randFloat > 0.80) {
+                img.src = IMG_WATERMELON   
+            } else if (randFloat > 0.70) {
+                img.src = IMG_CHOCOLATE
+            } else {
+                img.src = IMG_ORANGE
+            }
+            
+            if (i === 0) {
+                img.src = IMG_ORANGE
+            }
             
             orange_div.appendChild(img);
 
@@ -118,7 +136,7 @@
             const x = Math.sin(2 * rad)
 
             // img.style.transform = `translateX(${(i / AMOUNT_ORANGES) * 100}px)`
-            orange_div.style.transform = `scale(1.1) translateX(${x * 100}px)`
+            orange_div.style.transform = `scale(1.2) translateX(${x * 100}px)`
 
             
             orange_div.addEventListener("click", onOrangeClicked, { once: true})
