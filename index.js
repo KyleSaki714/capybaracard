@@ -49,6 +49,7 @@
     }
 
     let final_capy_img = null
+    let letter_is_fullscreen = false;
 
     // thanks bro
     // https://www.digitalocean.com/community/tutorials/how-to-encode-and-decode-strings-with-base64-in-javascript
@@ -164,6 +165,24 @@
             );
 
         final_capy_img = document.getElementById("final_capy")
+    
+        const sappy_letter = document.getElementById("my_letter");
+        sappy_letter.addEventListener("click", onLetterClicked);
+    
+    }
+
+    function onLetterClicked(event) {
+        const letter = event.currentTarget;
+        console.log("letterclicked")
+        if (letter_is_fullscreen) {
+            letter.classList.remove("fullscreen")
+            
+        } else {
+            letter.classList.add("fullscreen")
+
+        }
+        letter_is_fullscreen = !letter_is_fullscreen;
+
     }
 
     function createCustomUserMessage() {

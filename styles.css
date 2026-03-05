@@ -113,12 +113,24 @@ html, body {
     }
 }
 
-#sappy_letter {
+.sappy_letter {
     /* max-width: 500px; */
     height: 60vh;
     background-color: #f9ebd2;
     padding: 34px 55px;
     object-fit: cover;
+    transition: all 0.5s ease-in-out;
+}
+
+.fullscreen {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    padding: 0;
+    object-fit: contain;
+    z-index: 999;
 }
 
 
