@@ -143,6 +143,12 @@ html, body {
     left: 10px;
     opacity: 0;
     transition: opacity 1s ease-in-out;
+
+    background: none;
+    border: none;
+    font-family: kylesans2025;
+    font-size: 6rem;
+    cursor: pointer;
 }
 
 #info {
