@@ -45,6 +45,8 @@
         AMOUNT_ORANGES = str_msg.length;
     }
 
+    let final_capy_img = null
+
     // thanks bro
     // https://www.digitalocean.com/community/tutorials/how-to-encode-and-decode-strings-with-base64-in-javascript
 
@@ -69,19 +71,6 @@
         return decoder.decode(bytes);
     }
 
-    function isaBase64String(str) {
-        if (!str || str.length % 4 !== 0 || !/^[A-Za-z0-9+/]+={0,2}$/.test(str)) {
-            return false; // Quick initial check for basic validity
-        }
-        try {
-            // Attempt to decode the string
-            atob(str);
-            return true;
-        } catch (e) {
-            // If an error is caught, it's not a valid base64 string
-            return false;
-        }
-    }
 
     function init() {
 
@@ -156,6 +145,8 @@
                 document.body.clientHeight, 
                 document.documentElement.clientHeight
             );
+
+        final_capy_img = document.getElementById("final_capy")
     }
 
     function createCustomUserMessage() {
@@ -222,7 +213,12 @@
         }, 750)
 
         if (currentOrange === AMOUNT_ORANGES) {
-            console.log("HAPPY")
+            setTimeout(() => {
+                console.log("HAPPY")
+
+                final_capy_img.src = "./assets/capy card final capy 2 (20260304010249 cutout).webp"
+
+            }, 1500)
         }
     }
 
