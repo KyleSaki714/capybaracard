@@ -76,7 +76,6 @@
 
 
     function init() {
-
         const searchParams = new URLSearchParams(window.location.search);
         
         if (searchParams.has("msg")) {
@@ -99,7 +98,7 @@
         bg_1 = document.getElementById("bg-1")
         bg_2 = document.getElementById("bg-2")
 
-        swapBgs(backgrounds_paths[0])
+        // swapBgs(backgrounds_paths[0])
 
         oranges_div = document.getElementById("orange_stack")
 
@@ -339,39 +338,48 @@
 
         // RESTRICT SCROLL
 
-        const WINDOW_OFFSET = window.innerHeight;
+        // const WINDOW_OFFSET = window.innerHeight;
         
-        if (window.scrollY + WINDOW_OFFSET > currentPreventScrollPoint) {
-            console.log("resetting scroll")
-            window.scrollTo({   
-                top: currentPreventScrollPoint - WINDOW_OFFSET,  // Vertical position
-                left: 0,   // Horizontal position
-                behavior: 'smooth' // Animates the scroll smoothly
-            });
-        }
+        // if (window.scrollY + WINDOW_OFFSET > currentPreventScrollPoint) {
+        //     console.log("resetting scroll")
+        //     window.scrollTo({   
+        //         top: currentPreventScrollPoint - WINDOW_OFFSET,  // Vertical position
+        //         left: 0,   // Horizontal position
+        //         behavior: 'smooth' // Animates the scroll smoothly
+        //     });
+        // }
 
         // CHECK IF U GOTTA CHANGE BACKGROUND
         
-        // const currAbsPageScrollPosNormalized = (window.scrollY + (window.innerHeight / 2)) / ABSOLUTE_PAGE_HEIGHT
-        // checkpageScrollToBackground(currAbsPageScrollPosNormalized)
+        const currAbsPageScrollPosNormalized = (window.scrollY + (window.innerHeight / 2)) / ABSOLUTE_PAGE_HEIGHT
+        checkpageScrollToBackground(currAbsPageScrollPosNormalized)
     }
 
     function checkpageScrollToBackground(currPgScroll) {
 
-        let whichBgIdx = Math.trunc(currPgScroll * backgrounds_paths.length);
-        if (whichBgIdx >= backgrounds_paths.length) {
-            whichBgIdx = backgrounds_paths.length - 1;
-        }
-        const chosenBg = backgrounds_paths[whichBgIdx];
-
-        console.log(`${currPgScroll} ${whichBgIdx}`)
-
-        if (curr_bg === chosenBg) {
-            return
+        if (!bg_1) {
+            console.error("no bg img!")
+            return;
         }
 
-        curr_bg = backgrounds_paths[whichBgIdx];
-        swapBgs(chosenBg)
+        if (currPgScroll > 0.5) {
+            bg_1.classList.add("invisible")
+        }
+
+        // let whichBgIdx = Math.floor(currPgScroll * backgrounds_paths.length);
+        // if (whichBgIdx >= backgrounds_paths.length) {
+        //     whichBgIdx = backgrounds_paths.length - 1;
+        // }
+        // const chosenBg = backgrounds_paths[whichBgIdx];
+
+        // console.log(`${currPgScroll} ${whichBgIdx}`)
+
+        // if (curr_bg === chosenBg) {
+        //     return
+        // }
+
+        // curr_bg = backgrounds_paths[whichBgIdx];
+        // swapBgs(chosenBg)
 
     }
 

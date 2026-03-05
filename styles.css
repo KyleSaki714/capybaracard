@@ -40,12 +40,12 @@ html, body {
     bottom: 0;
     left: 0;
     overflow: hidden;
-    width: 100%;
+    width: 100vw;
     z-index: -1;
     opacity: 1;
     transition: opacity 0.25s ease-in;
     
-    height: 100%;
+    height: 100vh;
     object-fit: fill;
     @media(min-width: 600px) {
         height: 100vh;
@@ -56,6 +56,10 @@ html, body {
 
 .invisible {
     opacity: 0;
+}
+
+#orange_stack {
+    overflow: hidden;
 }
 
 #orange_stack, #capy {
@@ -74,7 +78,8 @@ html, body {
     object-fit: fill;
     min-width: 220px;
     max-width: 300px;
-
+    
+    filter: drop-shadow(0 8px 3px black);
     /* stack that thang */
     /* edit: in js instead! along with sin code */
     /* transform: scale(1.5); */
