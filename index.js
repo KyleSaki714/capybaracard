@@ -259,7 +259,9 @@
 
     // gets the posiiton of 1 orange ahead to prevent scrolling past that point
     function getCurrentPreventScrollPoint() {
-        if (currentOrange + 1 > oranges_div.childNodes.length - 1) {
+
+        // if the last orange clicked is the last one, return bottom of page
+        if (currentOrange > oranges_div.childNodes.length - 1) {
 
             ABSOLUTE_PAGE_HEIGHT = Math.max(
                 document.body.scrollHeight, 

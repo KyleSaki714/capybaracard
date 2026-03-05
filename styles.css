@@ -107,6 +107,7 @@ html, body {
 .letter {
     background-color: #f9ebd2;
     padding: 34px 55px;
+    max-width: 500px;
 }
 
 #info {
