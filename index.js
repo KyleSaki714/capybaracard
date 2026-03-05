@@ -127,7 +127,7 @@
                 img.src = IMG_ORANGE
             }
             
-            if (i === 0) {
+            if (i === 0 || i === AMOUNT_ORANGES - 1) {
                 img.src = IMG_ORANGE
             }
             
@@ -155,8 +155,9 @@
             behavior: 'smooth' // Animates the scroll smoothly
         });
         
-        const info = document.getElementById("info")
-        info.addEventListener("click", createCustomUserMessage)
+        // removed custom message thing
+        // const info = document.getElementById("info")
+        // info.addEventListener("click", createCustomUserMessage)
 
         ABSOLUTE_PAGE_HEIGHT = Math.max(
                 document.body.scrollHeight, 
