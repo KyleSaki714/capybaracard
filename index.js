@@ -18,7 +18,7 @@
     const IMG_ORANGE = "./assets/orange.webp"
     const IMG_CHOCOLATE = "./assets/chocolate.webp"
     const IMG_CAKE = "./assets/cake.webp"
-    const IMG_WATERMELON = "./assets/watermelon.webp"
+    const IMG_WATERMELON = "./assets/capy card watermelon (20260304045813).webp"
 
     let MESSAGE = [..."Happy Birthday Risa!!"]
     let AMOUNT_ORANGES = MESSAGE.length;
@@ -236,7 +236,7 @@
 
                 final_capy_img.src = "./assets/capy card final capy 2 (20260304010249 cutout).webp"
 
-            }, 1500)
+            }, 2500)
         }
     }
 
