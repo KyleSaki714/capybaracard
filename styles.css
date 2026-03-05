@@ -41,7 +41,7 @@ html, body {
     left: 0;
     overflow: hidden;
     width: 100vw;
-    z-index: -1;
+    z-index: -50;
     opacity: 1;
     transition: opacity 0.25s ease-in;
     
@@ -62,7 +62,7 @@ html, body {
     overflow: hidden;
 }
 
-#orange_stack, #capy {
+#orange_stack, #final_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -103,7 +103,7 @@ html, body {
     animation-direction: alternate-reverse;
 }
 
-#capy > img {
+#final_capy {
     filter: drop-shadow(0px 0px 24px #fd9003);
     max-width: 250px;
     z-index: -1;
@@ -113,11 +113,14 @@ html, body {
     }
 }
 
-.letter {
+#sappy_letter {
+    /* max-width: 500px; */
+    height: 60vh;
     background-color: #f9ebd2;
     padding: 34px 55px;
-    max-width: 500px;
+    object-fit: cover;
 }
+
 
 #info {
     position: absolute;

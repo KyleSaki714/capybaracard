@@ -338,16 +338,16 @@
 
         // RESTRICT SCROLL
 
-        // const WINDOW_OFFSET = window.innerHeight;
+        const WINDOW_OFFSET = window.innerHeight;
         
-        // if (window.scrollY + WINDOW_OFFSET > currentPreventScrollPoint) {
-        //     console.log("resetting scroll")
-        //     window.scrollTo({   
-        //         top: currentPreventScrollPoint - WINDOW_OFFSET,  // Vertical position
-        //         left: 0,   // Horizontal position
-        //         behavior: 'smooth' // Animates the scroll smoothly
-        //     });
-        // }
+        if (window.scrollY + WINDOW_OFFSET > currentPreventScrollPoint) {
+            console.log("resetting scroll")
+            window.scrollTo({   
+                top: currentPreventScrollPoint - WINDOW_OFFSET,  // Vertical position
+                left: 0,   // Horizontal position
+                behavior: 'smooth' // Animates the scroll smoothly
+            });
+        }
 
         // CHECK IF U GOTTA CHANGE BACKGROUND
         
