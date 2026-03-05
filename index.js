@@ -51,6 +51,9 @@
     let final_capy_img = null
     let letter_is_fullscreen = false;
 
+    let sappy_letter = null;
+    let backBtn = null;
+
     // thanks bro
     // https://www.digitalocean.com/community/tutorials/how-to-encode-and-decode-strings-with-base64-in-javascript
 
@@ -166,23 +169,32 @@
 
         final_capy_img = document.getElementById("final_capy")
     
-        const sappy_letter = document.getElementById("my_letter");
+        sappy_letter = document.getElementById("my_letter");
         sappy_letter.addEventListener("click", onLetterClicked);
     
+        backBtn = document.getElementById("backBtn")
+        backBtn.addEventListener("click", onBackButtonClicked)
+
     }
 
     function onLetterClicked(event) {
-        const letter = event.currentTarget;
         console.log("letterclicked")
-        if (letter_is_fullscreen) {
-            letter.classList.remove("fullscreen")
-            
-        } else {
-            letter.classList.add("fullscreen")
 
-        }
-        letter_is_fullscreen = !letter_is_fullscreen;
+        sappy_letter.classList.add("fullscreen")
+        backBtn.style.display = "block"
+        backBtn.style.opacity = 1
 
+    }
+
+    function onBackButtonClicked(event) {
+        sappy_letter.classList.remove("fullscreen")
+        backBtn.style = null
+
+        window.scrollTo({   
+            top: ABSOLUTE_PAGE_HEIGHT,  // Vertical position
+            left: 0,   // Horizontal position
+            behavior: 'smooth' // Animates the scroll smoothly
+        });
     }
 
     function createCustomUserMessage() {
@@ -254,7 +266,7 @@
 
                 final_capy_img.src = "./assets/capy card final capy 2 (20260304010249 cutout).webp"
 
-            }, 2500)
+            }, 1750)
         }
     }
 

@@ -133,6 +133,17 @@ html, body {
     z-index: 999;
 }
 
+#backBtn {
+    display: none;
+    height: 60px;
+    width: 90px;
+    z-index: 9999;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
 
 #info {
     position: absolute;
