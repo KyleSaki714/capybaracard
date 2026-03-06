@@ -23,7 +23,6 @@
     let MESSAGE = [..."Happy Birthday Risa!!"]
     let AMOUNT_ORANGES = MESSAGE.length;
 
-    // starts at AMOUNT_ORANGES, is subtracted on every orange click
     let currentOrange = 0;
     let currentPreventScrollPoint = 0;
 
@@ -141,8 +140,10 @@
             // img.style.transform = `translateX(${(i / AMOUNT_ORANGES) * 100}px)`
             orange_div.style.transform = `scale(1.175) translateX(${x * 100}px)`
 
-            
-            orange_div.addEventListener("click", onOrangeClicked, { once: true})
+            // only add event listener to first orange!
+            if (i === 0) {
+                orange_div.addEventListener("click", onOrangeClicked, { once: true})
+            }            
             
             oranges_div.appendChild(orange_div)
         }
@@ -223,6 +224,13 @@
         
         currentOrange++;
 
+        // add click event listeners to next orange!
+        const nextOrange = oranges_div.childNodes[currentOrange];
+        if (nextOrange) {
+            nextOrange.addEventListener("click", onOrangeClicked, { once: true})
+        }
+
+        // clone orange for fall animation
         const clone = elem.cloneNode(true)
         clone.style = ""
         clone.style.zIndex = -1
@@ -389,10 +397,10 @@
 
     function checkpageScrollToBackground(currPgScroll) {
 
-        if (!bg_1) {
-            console.error("no bg img!")
-            return;
-        }
+        // if (!bg_1) {
+        //     console.error("no bg img!")
+        //     return;
+        // }
 
         if (currPgScroll > 0.5) {
             bg_1.classList.add("invisible")
