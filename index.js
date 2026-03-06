@@ -47,6 +47,7 @@
         AMOUNT_ORANGES = str_msg.length;
     }
 
+    let capy_smile = false;
     let final_capy_img = null
     let letter_is_fullscreen = false;
 
@@ -179,6 +180,7 @@
             );
 
         final_capy_img = document.getElementById("final_capy")
+        final_capy_img.addEventListener("click", onCapyClicked)
     
         sappy_letter = document.getElementById("my_letter");
         sappy_letter.addEventListener("click", onLetterClicked);
@@ -186,6 +188,17 @@
         backBtn = document.getElementById("backBtn")
         backBtn.addEventListener("click", onBackButtonClicked)
 
+    }
+
+    function onCapyClicked(event) {
+        // toggle capy image when clicked
+        console.log("capy click")
+        if(capy_smile) {
+            final_capy_img.src = "./assets/capy card final capy 1 (20260304010039 cutout).webp"
+        } else {
+            final_capy_img.src = "./assets/capy card final capy 2 (20260304010249 cutout).webp"
+        }
+        capy_smile = !capy_smile;
     }
 
     function onLetterClicked(event) {
@@ -283,7 +296,9 @@
                 console.log("HAPPY")
 
                 final_capy_img.src = "./assets/capy card final capy 2 (20260304010249 cutout).webp"
+                final_capy_img.style.filter = "drop-shadow(0px 0px 24px #fd9003)"
 
+                capy_smile = true;
             }, 1750)
         }
     }
