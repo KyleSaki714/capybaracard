@@ -139,7 +139,7 @@
             const x = Math.sin(2 * rad)
 
             // img.style.transform = `translateX(${(i / AMOUNT_ORANGES) * 100}px)`
-            orange_div.style.transform = `scale(1.2) translateX(${x * 100}px)`
+            orange_div.style.transform = `scale(1.175) translateX(${x * 100}px)`
 
             
             orange_div.addEventListener("click", onOrangeClicked, { once: true})
