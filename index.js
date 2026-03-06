@@ -79,6 +79,15 @@
 
 
     function init() {
+
+        setTimeout(() => {
+            // fade loading screen
+            const loadingScreen = document.getElementById("loadingScreen");
+            loadingScreen.style.pointerEvents = "none";
+            loadingScreen.style.opacity = 0.0;
+        }, 500)
+
+
         const searchParams = new URLSearchParams(window.location.search);
         
         if (searchParams.has("msg")) {

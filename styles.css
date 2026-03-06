@@ -168,5 +168,22 @@ html, body {
 }
 
 #loadingScreen {
+    background-color: white;
+    position: fixed;
+    z-index: 99999;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    object-fit: contain;
+
+    padding: 11vw;
     
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
 }
